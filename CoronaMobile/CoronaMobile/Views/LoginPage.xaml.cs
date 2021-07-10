@@ -17,5 +17,10 @@ namespace CoronaMobile.Views
             InitializeComponent();
             this.BindingContext = new LoginViewModel();
         }
+
+        public void DisplayTest()
+        {
+            DisplayAlert("Подтвердите вход", "Войти?", "Да", "Нет");
+        }
     }
 }

@@ -52,8 +52,8 @@ namespace CoronaMobile.ViewModels
             Item newItem = new Item()
             {
                 Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Description = Description
+                Text = this.Text,
+                Description = this.Description
             };
 
             await DataStore.AddItemAsync(newItem);
