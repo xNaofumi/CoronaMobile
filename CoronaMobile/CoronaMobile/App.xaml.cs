@@ -18,7 +18,7 @@ namespace CoronaMobile
 
         protected override void OnStart()
         {
-            Shell.Current.GoToAsync("//LoginPage");
+            Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
 
         protected override void OnSleep()
