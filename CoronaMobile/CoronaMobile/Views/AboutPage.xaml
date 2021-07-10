@@ -20,15 +20,15 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                 <ContentView VerticalOptions="CenterAndExpand">
-                    <Image Source="app_logo.png" VerticalOptions="Center" HeightRequest="170"/>
+                    <Image Source="app_logo.png" VerticalOptions="CenterAndExpand" HeightRequest="128"/>
                 </ContentView>
             </StackLayout>
         </StackLayout>
         <ScrollView Grid.Row="1">
-            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+            <StackLayout Orientation="Vertical" Padding="30,10,30,10">
                 <Label Text="Добро пожаловать в Corona Mobile" FontSize="Title"/>
                 <Label Text="" FontSize="16" Padding="0,0,0,0"/>
                 <Label FontSize="16" Padding="0,0,0,0">
