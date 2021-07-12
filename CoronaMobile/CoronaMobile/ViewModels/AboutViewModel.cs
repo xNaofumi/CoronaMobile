@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using CoronaMobile.Models;
+using CoronaMobile.Views;
 
 namespace CoronaMobile.ViewModels
 {
@@ -12,7 +13,8 @@ namespace CoronaMobile.ViewModels
         public AboutViewModel()
         {
             Title = "Приветствие";
-            GoToMainMenu = new Command(async () => await Shell.Current.GoToAsync($"///{nameof(CoronaMobile.Views.ItemsPage)}"));
+
+            GoToMainMenu = new Command(async () => await Shell.Current.GoToAsync($"{nameof(MainPage)}"));
         }
 
         public ICommand GoToMainMenu { get; }
