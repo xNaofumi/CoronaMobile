@@ -14,7 +14,7 @@ namespace CoronaMobile.ViewModels
         {
             Title = "Приветствие";
 
-            GoToMainMenu = new Command(async () => await Shell.Current.GoToAsync($"{nameof(MainPage)}"));
+            GoToMainMenu = new Command(async () => await Shell.Current.Navigation.PushModalAsync(new MainPage()));
         }
 
         public ICommand GoToMainMenu { get; }
