@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using CoronaMobile.Views;
 
 namespace CoronaMobile.ViewModels
 {
@@ -47,6 +48,9 @@ namespace CoronaMobile.ViewModels
                 var response = await App.WebClient.PostAsync(App.WebClient.BaseAddress, content);
                 await Shell.Current.CurrentPage.DisplayAlert("Ответ", response.Content.ReadAsStringAsync().Result, "OK");
                 await Shell.Current.CurrentPage.DisplayAlert("Ответ", response.StatusCode.ToString(), "OK");
+                
+                
+                App.Current.MainPage = new NavigationPage(new MainPage());
             }
             catch (Exception ex)
             {
