@@ -9,7 +9,7 @@ namespace CoronaMobile
 {
     public partial class App : Application
     {
-        public readonly HttpClient Client;
+        public static readonly HttpClient WebClient = new HttpClient();
         public readonly string ServerUrl;
 
         public App()
@@ -18,9 +18,11 @@ namespace CoronaMobile
             DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
 
-            Client = new HttpClient();
-            ServerUrl = "http://194.87.92.52:8080";
-            Client.BaseAddress = new Uri(ServerUrl);
+            if (WebClient.BaseAddress == null)
+            {
+                ServerUrl = "http://194.87.92.52:8080";
+                WebClient.BaseAddress = new Uri(ServerUrl);
+            }
             CheckServerConnection();
         }
 
@@ -28,7 +30,7 @@ namespace CoronaMobile
         {
             try
             {
-                string responseBody = await Client.GetStringAsync(ServerUrl);
+                string responseBody = await WebClient.GetStringAsync(ServerUrl);
             }
             catch (Exception ex)
             {
