@@ -2,11 +2,32 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CoronaMobile.Views.MainPage">
-  <!--Pages can be added as references or inline-->
-    <ContentPage.Content>
-        <StackLayout>
-            <Button Text="Запись на вакцинацию" ImageSource="icon_vaccine.png"></Button>
-            <Button Text="Вызов врача на дом" ImageSource="icon_doctor.png"></Button>
-        </StackLayout>
-    </ContentPage.Content>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="icon_settings.png" Command="{Binding AppSettingsCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="1">
+            <StackLayout Orientation="Vertical" Padding="0,10,30,10">
+                <Label Text="Вакцинация – это простой, безопасный и эффективный способ защиты от болезней до того,
+как человек вступит в контакт с их возбудителями. Вакцинация задействует естественные защитные 
+механизмы организма для формирования устойчивости к ряду инфекционных заболеваний и делает вашу 
+иммунную систему сильнее. Запишитесь на вакцинацию — это бесплатно." HorizontalOptions="Center" HorizontalTextAlignment="Center" Padding="40,20,40,0"/>
+                <Button Text="Запись на вакцинацию" ImageSource="icon_vaccine.png" Command="{Binding VaccinationCommand}" Margin="40,20,40,0"/>
+                
+                <Label Text="У вас возникли симптомы заболевания? Вызовите врача на дом и сдайте тест на наличие коронавирусной инфекции." 
+                       HorizontalOptions="Center" HorizontalTextAlignment="Center" Padding="40,20,40,0"/>
+                <Button Text="Вызов врача на дом" ImageSource="icon_doctor.png" Command="{Binding DoctorCommand}" Margin="40,20,40,0"/>
+                
+                <Label Text="Вам плохо, а медсестра не рядом? Вызовите её в палату." 
+                       HorizontalOptions="Center" HorizontalTextAlignment="Center" Padding="40,20,40,0"/>
+                <Button Text="Вызов медсестры в палату" ImageSource="red_button.png" Command="{Binding RedButtonCommand}" Margin="40,20,40,0"/>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>
