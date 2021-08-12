@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 
 using Xamarin.Forms;
 
@@ -11,6 +8,7 @@ namespace CoronaMobile.ViewModels
     public class RegisterFormViewModel : BaseViewModel
     {
         public Command RegisterCommand { get; }
+
         public string PhoneNumber
         {
             get => _phoneNumber;
@@ -52,15 +50,9 @@ namespace CoronaMobile.ViewModels
         public RegisterFormViewModel()
         {
             RegisterCommand = new Command(TryRegister, ValidateRegister);
+
             this.PropertyChanged +=
                 (_, __) => RegisterCommand.ChangeCanExecute();
-            this.PropertyChanged +=
-                (_, __) => FormatFields();
-        }
-
-        private void FormatFields()
-        {
-            
         }
 
         private bool ValidateRegister()
@@ -75,18 +67,31 @@ namespace CoronaMobile.ViewModels
 
         private async void TryRegister()
         {
-            var content = new StringContent($"firstName={_firstName},secondName={_lastName},email={_email},password={_password}," +
-                $"phoneNumber={_phoneNumber},birthDate={_birthDate}");
+            // Server API only has register feature finished, so this is playing role of
+            // testing purposes only.
+
+            var request = new HttpRequestMessage(HttpMethod.Post, App.WebClient.BaseAddress + "patient/register");
+            var content = new StringContent("<PatientRegData>" +
+                $"<firstName>{_firstName}</firstName>" +
+                $"<lastName>{_lastName}</lastName>" +
+                $"<email>{_email}</email>" +
+                $"<password>{_password}</password>" +
+                $"<phoneNumber>{_phoneNumber}</phoneNumber>" +
+                $"<birthDate>{_birthDate}</birthDate>" +
+                $"</PatientRegData>");
+
+            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/xml");
+            request.Content = content;
 
             try
             {
-                var response = await App.WebClient.PostAsync(App.WebClient.BaseAddress, content);
-                await Shell.Current.CurrentPage.DisplayAlert("Ответ", response.Content.ReadAsStringAsync().Result, "OK");
+                var response = await App.WebClient.SendAsync(request);
+                var responseResult = await response.Content.ReadAsStringAsync();
                 await Shell.Current.CurrentPage.DisplayAlert("Ответ", response.StatusCode.ToString(), "OK");
             }
             catch (Exception ex)
             {
-                await Shell.Current.CurrentPage.DisplayAlert("Ошибка подключения", ex.Message, "OK");
+                await Shell.Current.CurrentPage.DisplayAlert("Ошибка", ex.Message, "OK");
             }
         }
     }
