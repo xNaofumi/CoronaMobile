@@ -1,7 +1,4 @@
 ﻿using CoronaMobile.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace CoronaMobile.ViewModels
@@ -10,11 +7,13 @@ namespace CoronaMobile.ViewModels
     {
         public Command LoginCommand { get; }
         public Command RegisterCommand { get; }
+        public Command AppSettingsCommand { get; }
 
         public LoginViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);
             RegisterCommand = new Command(OnRegisterClicked);
+            AppSettingsCommand = new Command(OnSettingsClicked);
         }
 
         private async void OnLoginClicked(object obj)
@@ -25,6 +24,11 @@ namespace CoronaMobile.ViewModels
         private async void OnRegisterClicked(object obj)
         {
             await Shell.Current.GoToAsync($"{nameof(RegisterFormPage)}");
+        }
+
+        private async void OnSettingsClicked(object obj)
+        {
+            await Shell.Current.Navigation.PushAsync(new SettingsPage());
         }
     }
 }
