@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Windows.Input;
+﻿using CoronaMobile.Views;
+using System;
 using Xamarin.Forms;
-using CoronaMobile.Views;
 
 namespace CoronaMobile.ViewModels
 {
@@ -41,16 +36,11 @@ namespace CoronaMobile.ViewModels
 
         private async void TryAuthorize()
         {
-            var content = new StringContent($"password={Password},email={PhoneNumberOrEmail}");
-
             try
             {
-                var response = await App.WebClient.PostAsync(App.WebClient.BaseAddress, content);
-                await Shell.Current.CurrentPage.DisplayAlert("Ответ", response.Content.ReadAsStringAsync().Result, "OK");
-                await Shell.Current.CurrentPage.DisplayAlert("Ответ", response.StatusCode.ToString(), "OK");
-                
-                
-                App.Current.MainPage = new NavigationPage(new MainPage());
+                // Server API is not ready so we are assuming user has authorized successfully.
+                await Shell.Current.CurrentPage.DisplayAlert("Вход", "Вы успешно вошли.", "OK");
+                await Shell.Current.Navigation.PushAsync(new MainPage());
             }
             catch (Exception ex)
             {
