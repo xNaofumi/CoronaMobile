@@ -1,56 +1,51 @@
 ﻿using CoronaMobile.Models;
 using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace CoronaMobile.ViewModels
 {
-    [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class ItemDetailViewModel : BaseViewModel
     {
-        private string itemId;
-        private string text;
-        private string description;
+        private string _itemId;
+        private string _name;
+        private string _address;
         public string Id { get; set; }
 
-        public string Text
+        public string Name
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            get => _name;
+            set => SetProperty(ref _name, value);
         }
 
-        public string Description
+        public string Address
         {
-            get => description;
-            set => SetProperty(ref description, value);
+            get => _address;
+            set => SetProperty(ref _address, value);
         }
 
-        public string ItemId
+        private Hospital _item;
+        public Hospital Item
         {
-            get
-            {
-                return itemId;
-            }
+            get => _item;
             set
             {
-                itemId = value;
-                LoadItemId(value);
+                SetProperty(ref _item, value);
+                LoadItem(_item);
             }
         }
 
-        public async void LoadItemId(string itemId)
+        public void LoadItem(Hospital item)
         {
             try
             {
-                var item = await DataStore.GetItemAsync(itemId);
                 Id = item.Id;
-                Text = item.Text;
-                Description = item.Description;
+                Name = item.Name;
+                Address = item.Address;
             }
             catch (Exception)
             {
-                Debug.WriteLine("Failed to Load Item");
+                Debug.WriteLine("Failed to load item");
             }
         }
     }
