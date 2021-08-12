@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace CoronaMobile.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        public ICommand LoginCommand { get; }
+        public ICommand RegisterCommand { get; }
+
         public LoginPage()
         {
             InitializeComponent();
