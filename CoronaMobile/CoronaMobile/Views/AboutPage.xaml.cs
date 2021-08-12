@@ -1,8 +1,6 @@
-﻿using System;
-using System.ComponentModel;
+﻿using CoronaMobile.Models;
+using CoronaMobile.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using CoronaMobile.Models;
 
 namespace CoronaMobile.Views
 {
@@ -12,24 +10,31 @@ namespace CoronaMobile.Views
         {
             InitializeComponent();
             UpdateCovidStats();
+
+            BindingContext = new LoginViewModel();
         }
 
         public async void UpdateCovidStats()
         {
-            var stats = new CovidInfo();
+            var info = new CovidInfo();
 
-            var info = await stats.GetStatsAsync();
-            if (info == null)
+            CovidInfo.Stats stats;
+
+            try
             {
-                await DisplayAlert("Не удалось подключиться", "Отсутствует соединение с сайтом стопкоронавирус.рф. Проверьте подключение к сети Интернет.", "OK");
+                stats = await info.GetStatsAsync();
+            } catch {
+                await DisplayAlert("Не удалось подключиться", "Отсутствует соединение с сайтом стопкоронавирус.рф. " +
+                    "Проверьте подключение к сети Интернет.", "OK");
+
                 return;
             }
 
-            Stats_InfectionsLastDay.Text = info.InfectionsLastDay;
-            Stats_Infections.Text = info.Infections;
-            Stats_Died.Text = info.Died;
-            Stats_Recovered.Text = info.Recovered;
-            Stats_Tests.Text = info.Tests;
+            Stats_InfectionsLastDay.Text = stats.InfectionsLastDay;
+            Stats_Infections.Text = stats.Infections;
+            Stats_Died.Text = stats.Died;
+            Stats_Recovered.Text = stats.Recovered;
+            Stats_Tests.Text = stats.Tests;
         }
     }
 }

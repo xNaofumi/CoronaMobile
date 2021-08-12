@@ -1,9 +1,6 @@
-﻿using CoronaMobile.Services;
-using CoronaMobile.Views;
-using Xamarin.Forms;
+﻿using System;
 using System.Net.Http;
-using System;
-using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace CoronaMobile
 {
@@ -15,7 +12,6 @@ namespace CoronaMobile
         public App()
         {
             InitializeComponent();
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
 
             if (WebClient.BaseAddress == null)
@@ -23,6 +19,8 @@ namespace CoronaMobile
                 ServerUrl = "http://194.87.92.52:8080";
                 WebClient.BaseAddress = new Uri(ServerUrl);
             }
+
+            WebClient.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/xml");
             CheckServerConnection();
         }
 
@@ -35,22 +33,7 @@ namespace CoronaMobile
             catch (Exception ex)
             {
                 await Shell.Current.CurrentPage.DisplayAlert("Ошибка подключения к серверу", ex.Message, "OK");
-                await Task.Delay(10000);
-                CheckServerConnection();
             }
-        }
-
-        protected override void OnStart()
-        {
-            Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
-        }
-
-        protected override void OnSleep()
-        {
-        }
-
-        protected override void OnResume()
-        {
         }
     }
 }
