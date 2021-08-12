@@ -16,9 +16,9 @@
             <Label Text="Номер телефона" FontSize="Medium" />
             <Entry Text="{Binding PhoneNumber, Mode=Default}" Keyboard="Telephone" FontSize="Medium" Margin="0" />
             <Label Text="Дата рождения" FontSize="Medium" />
-            <Entry Text="{Binding BirthDate, Mode=Default}" Keyboard="Numeric" Placeholder="21-05-1995" FontSize="Medium" Margin="0" />
+            <Entry Text="{Binding BirthDate, Mode=Default}" Placeholder="1995-05-21" FontSize="Medium" Margin="0" />
             <StackLayout Orientation="Horizontal">
-                <Button Text="Регистрация" Command="{Binding RegisterCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Регистрация" Command="{Binding RegisterCommand}" HorizontalOptions="FillAndExpand"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
