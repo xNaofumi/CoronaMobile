@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoronaMobile.Views.RegisterFormPage"
+             Title="Регистрация">
+    <ContentPage.Content>
+        <StackLayout Spacing="3" Padding="15">
+            <Label Text="Имя" FontSize="Medium" />
+            <Entry Text="{Binding FirstName, Mode=Default}" FontSize="Medium" />
+            <Label Text="Фамилия" FontSize="Medium" />
+            <Entry Text="{Binding LastName, Mode=Default}" FontSize="Medium" Margin="0" />
+            <Label Text="Электронная почта" FontSize="Medium" />
+            <Entry Text="{Binding Email, Mode=Default}" Keyboard="Email" FontSize="Medium" Margin="0" />
+            <Label Text="Пароль" FontSize="Medium" />
+            <Entry Text="{Binding Password, Mode=Default}" IsPassword="True" FontSize="Medium" Margin="0" />
+            <Label Text="Номер телефона" FontSize="Medium" />
+            <Entry Text="{Binding PhoneNumber, Mode=Default}" Keyboard="Telephone" FontSize="Medium" Margin="0" />
+            <Label Text="Дата рождения" FontSize="Medium" />
+            <Entry Text="{Binding BirthDate, Mode=Default}" Placeholder="1995-05-21" FontSize="Medium" Margin="0" />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Регистрация" Command="{Binding RegisterCommand}" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoronaMobile.Views.LoginFormPage"
+             Title="Авторизация">
+    <ContentPage.Content>
+        <StackLayout Spacing="3" Padding="15">
+            <Label Text="Номер телефона или адрес почты" FontSize="Medium" />
+            <Entry Text="{Binding PhoneNumberOrEmail, Mode=Default}" FontSize="Medium" />
+            <Label Text="Пароль" FontSize="Medium" />
+            <Entry Text="{Binding Password, Mode=Default}" FontSize="Medium" Margin="0" />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Войти" Command="{Binding AuthorizeCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

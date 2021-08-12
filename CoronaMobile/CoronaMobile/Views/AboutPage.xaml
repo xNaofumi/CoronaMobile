@@ -1,14 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CoronaMobile.Views.AboutPage"
-             xmlns:vm="clr-namespace:CoronaMobile.ViewModels"
-             Title="{Binding Title}">
-    
-    <ContentPage.BindingContext>
-        <vm:AboutViewModel />
-    </ContentPage.BindingContext>
-    
+             x:Class="CoronaMobile.Views.AboutPage">
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Accent">#96d1ff</Color>
@@ -16,7 +10,7 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="icon_settings.png" Command="{Binding AppSettings}" />
+        <ToolbarItem IconImageSource="icon_settings.png" Command="{Binding AppSettingsCommand}" />
     </ContentPage.ToolbarItems>
 
     <Grid>
@@ -67,10 +61,8 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Button Margin="0,10,0,0" Text="Главное меню"
-                        Command="{Binding GoToMainMenu}"
-                        BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" />
+                <Button Margin="0,10,0,0" Text="Вход" Command="{Binding LoginCommand}"/>
+                <Button Margin="0,10,0,0" Text="Регистрация" Command="{Binding RegisterCommand}"/>
             </StackLayout>
         </ScrollView>
     </Grid>

@@ -3,13 +3,13 @@ using Xamarin.Forms;
 
 namespace CoronaMobile.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class RegisterFormPage : ContentPage
     {
-        public MainPage()
+        public RegisterFormPage()
         {
             InitializeComponent();
 
-            BindingContext = new MainPageViewModel();
+            BindingContext = new RegisterFormViewModel(); 
         }
     }
 }
