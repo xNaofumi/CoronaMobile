@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using AngleSharp;
+﻿using AngleSharp;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CoronaMobile.Models
 {
-    class CovidInfo
+    public class CovidInfo
     {
-
-        public class CovidStats
+        public class Stats
         {
             public string Tests { get; set; }
             public string Infections { get; set; }
@@ -18,18 +16,25 @@ namespace CoronaMobile.Models
             public string Died { get; set; }
         }
 
-        public async Task<CovidStats> GetStatsAsync()
+        public async Task<Stats> GetStatsAsync()
         {
             var config = Configuration.Default.WithDefaultLoader();
             var address = "https://xn--80aesfpebagmfblc0a.xn--p1ai/";
             var document = await BrowsingContext.New(config).OpenAsync(address);
             var cellSelector = "div.cv-countdown__item-value";
             var cells = document.QuerySelectorAll(cellSelector);
-            
+
             var data = cells.Select(m => m.TextContent);
 
-            var stats = new CovidStats();
+            var stats = new Stats();
             var dataConverted = data.ToArray();
+            TrySetCovidStats(stats, dataConverted);
+
+            return stats;
+        }
+
+        private static void TrySetCovidStats(Stats stats, string[] dataConverted)
+        {
             try
             {
                 stats.Tests = dataConverted[0];
@@ -37,13 +42,11 @@ namespace CoronaMobile.Models
                 stats.InfectionsLastDay = dataConverted[2];
                 stats.Recovered = dataConverted[3];
                 stats.Died = dataConverted[4];
-            } 
-            catch
-            {
-                return null;
             }
-
-            return stats;
+            catch (ArgumentOutOfRangeException ex)
+            {
+                throw ex;
+            }
         }
     }
 }
