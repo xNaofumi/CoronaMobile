@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CoronaMobile.Views.DoctorPage"
+             Title="Вызов врача на дом">
+    <ContentPage.Content>
+        <StackLayout>
+            <!-- Doctor functionality is not implemented yet, so we are assuming
+            there are no available doctors. -->
+            <Label Text="Нет доступных врачей."
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
